@@ -75,6 +75,7 @@ object ItemUtils {
 
         val mainhand = getEcoItem(player.inventory.itemInMainHand)
         if (mainhand != null) {
+            // TODO: Add check for armor
             list.add(mainhand)
         }
 
@@ -82,6 +83,13 @@ object ItemUtils {
             val offhand = getEcoItem(player.inventory.itemInOffHand)
             if (offhand != null) {
                 list.add(offhand)
+            }
+        }
+
+        for (slot in player.inventory.armorContents) {
+            val item = getEcoItem(slot);
+            if (item != null) {
+                list.add(item);
             }
         }
 
