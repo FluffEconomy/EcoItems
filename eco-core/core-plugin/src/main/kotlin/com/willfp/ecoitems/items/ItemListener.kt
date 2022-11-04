@@ -1,6 +1,8 @@
 package com.willfp.ecoitems.items
 
 import com.willfp.eco.core.EcoPlugin
+import com.willfp.eco.core.events.ArmorChangeEvent
+import com.willfp.eco.core.events.ArmorEquipEvent
 import com.willfp.eco.util.NumberUtils
 import com.willfp.libreforge.updateEffects
 import org.bukkit.event.EventHandler
@@ -15,6 +17,12 @@ class ItemListener(
 ) : Listener {
     @EventHandler
     fun onHoldItem(event: PlayerItemHeldEvent) {
+        event.player.updateEffects()
+        plugin.scheduler.run { event.player.updateEffects() }
+    }
+
+    @EventHandler
+    fun onArmorChange(event: ArmorEquipEvent) {
         event.player.updateEffects()
         plugin.scheduler.run { event.player.updateEffects() }
     }
